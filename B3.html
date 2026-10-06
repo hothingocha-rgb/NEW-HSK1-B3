@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><!-- ▼▼▼ DÒNG 5 BÊN DƯỚI: DÁN URL WEB APP CỦA GOOGLE APPS SCRIPT VÀO GIỮA HAI DẤU NGOẶC KÉP ▼▼▼ -->
+<script>var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwacj9pMTgHgP6I7xWw35Ewq8A1ynv2kGjTvuYYbyvxlYSt74tny8N_NDJ1uLdJWdNLWg/exec"; /* <<< DÁN URL Web App vào đây, ví dụ: "https://script.google.com/macros/s/AKfycb.../exec" (phải kết thúc bằng /exec) */</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HỌC TIẾNG TRUNG QUỐC CÔ HÀ – Tiếng Trung 1 – Bài 2-3</title>
+<style>
+:root{
+  --coral:#c23320; --coral-soft:#f6d9d2; --cream:#fff6ea; --cream-2:#fffaf3;
+  --ink:#2b2320; --line:#e8d6c3; --ok:#4a7c59; --warn:#b35a00;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--ink);
+  font-family:"Times New Roman",Times,serif;font-size:19px;line-height:1.5}
+.han{font-family:"SimSun","NSimSun","宋体","Songti SC","STSong","Noto Serif CJK SC","Noto Serif SC",serif;
+  font-size:1.55em;line-height:1.25;letter-spacing:.04em;font-weight:400}
+header.top{background:var(--coral);color:#fff;text-align:center;padding:16px 12px 14px}
+header.top h1{margin:0;font-size:clamp(22px,5vw,32px);letter-spacing:.5px}
+header.top .sub{margin-top:4px;font-size:clamp(17px,3.6vw,21px)}
+header.top .meta{margin-top:6px;font-size:16px;opacity:.95}
+#bar{position:sticky;top:0;z-index:10;background:var(--cream-2);border-bottom:2px solid var(--coral);
+  display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 14px;font-size:19px}
+#bar b{color:var(--coral)}
+#timer{font-variant-numeric:tabular-nums;font-weight:bold;font-size:24px}
+#timer.low{color:#fff;background:var(--coral);padding:0 10px;border-radius:8px}
+main{max-width:860px;margin:0 auto;padding:14px 12px 90px}
+.card{background:var(--cream-2);border:1px solid var(--line);border-radius:14px;padding:16px;margin:14px 0;
+  box-shadow:0 1px 3px rgba(120,70,40,.08)}
+.card h2{margin:0 0 10px;font-size:22px;color:var(--coral)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row .full{grid-column:1/-1}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+label.f{display:block;font-weight:bold;margin-bottom:4px}
+input[type=text]{width:100%;font:inherit;font-size:19px;padding:11px 12px;border:2px solid var(--line);
+  border-radius:10px;background:#fff;color:var(--ink)}
+input[type=text]:focus,select:focus{outline:none;border-color:var(--coral)}
+input[readonly]{background:#f3eadf}
+button{font:inherit;font-size:20px;font-weight:bold;cursor:pointer;border:0;border-radius:12px;
+  padding:13px 22px;background:var(--coral);color:#fff;min-height:48px}
+button:disabled{opacity:.55;cursor:not-allowed}
+button.ghost{background:#fff;color:var(--coral);border:2px solid var(--coral)}
+.msg{margin-top:12px;padding:10px 12px;border-radius:10px;font-size:18px;display:none}
+.msg.show{display:block}
+.msg.err{background:#fbe3de;border:1px solid var(--coral);color:#7d1f12}
+.msg.warn{background:#fff0d6;border:1px solid #e0b36a;color:#6b4200}
+.msg.info{background:#eef5ee;border:1px solid #b8d2bd;color:#2f5a3c}
+.rules{margin:10px 0 0;padding-left:20px;font-size:17px}
+.q{border-top:1px dashed var(--line);padding:14px 0}
+.q:first-of-type{border-top:0}
+.q .stem{display:flex;gap:10px;align-items:baseline;margin-bottom:8px}
+.q .n{flex:none;min-width:34px;height:34px;border-radius:50%;background:var(--coral);color:#fff;
+  display:inline-flex;align-items:center;justify-content:center;font-weight:bold;font-size:17px}
+.opt{display:block;margin:6px 0;cursor:pointer}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt .box{display:flex;align-items:center;gap:12px;padding:10px 12px;min-height:50px;background:#fff;
+  border:2px solid var(--line);border-radius:12px}
+.opt .lt{flex:none;width:32px;height:32px;border-radius:50%;border:2px solid var(--coral);color:var(--coral);
+  display:inline-flex;align-items:center;justify-content:center;font-weight:bold}
+.opt input:checked + .box{border-color:var(--coral);background:var(--coral-soft)}
+.opt input:checked + .box .lt{background:var(--coral);color:#fff}
+.opt input:focus-visible + .box{outline:3px solid #e9a597}
+.bank{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 4px}
+.chip{background:#fff;border:2px solid var(--coral);border-radius:10px;padding:4px 12px;display:inline-flex;gap:8px;align-items:baseline}
+.chip b{color:var(--coral)}
+.fill .sent{font-size:19px}
+.fill .sent .han{font-size:1.7em}
+.fill .vi{margin:4px 0 0 44px;font-style:italic;color:#5a4a42;font-size:18px}
+select{font:inherit;font-size:19px;font-weight:bold;min-width:76px;margin:0 4px;padding:6px 8px;
+  border:2px solid var(--coral);border-radius:8px;background:#fff;color:var(--ink)}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+.result{text-align:center;padding:26px 14px}
+.result .big{font-size:56px;font-weight:bold;color:var(--coral);line-height:1.1;margin:8px 0}
+footer{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:2px solid var(--coral);
+  text-align:center;padding:8px 10px;font-size:17px;z-index:9}
+footer a{color:var(--coral);font-weight:bold;text-decoration:none}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>HỌC TIẾNG TRUNG QUỐC CÔ HÀ</h1>
+  <div class="sub">Tiếng Trung 1 – Bài 2-3: Kiểm tra từ vựng nhanh</div>
+  <div class="meta">Thời gian: 10 phút | 20 câu | Mỗi câu 0,5 điểm | Tổng 10 điểm</div>
+</header>
+
+<div id="bar" hidden>
+  <div>Đã làm: <b id="prog">0/20</b></div>
+  <div>Còn lại: <span id="timer">10:00</span></div>
+</div>
+
+<main>
+  <section class="card" id="info">
+    <h2>Thông tin thí sinh</h2>
+    <div class="row">
+      <div><label class="f" for="hoTen">Họ và tên</label>
+        <input type="text" id="hoTen" maxlength="80" autocomplete="off" placeholder="Nguyễn Văn A"></div>
+      <div><label class="f" for="lop">Lớp</label>
+        <input type="text" id="lop" maxlength="30" autocomplete="off" placeholder="Ví dụ: TQ1-K25"></div>
+      <div class="full"><label class="f" for="maPhong">Mã phòng thi</label>
+        <input type="text" id="maPhong" maxlength="40" autocomplete="off" autocapitalize="off" placeholder="Giáo viên đọc mã cho cả lớp"></div>
+    </div>
+    <div class="actions"><button id="btnStart" type="button">Bắt đầu làm bài</button></div>
+    <div id="msgStart" class="msg"></div>
+    <ul class="rules">
+      <li>Bấm “Bắt đầu làm bài” thì đề mới hiện ra và đồng hồ bắt đầu chạy.</li>
+      <li>Hết giờ bài tự động nộp. Nộp xong bài sẽ bị khóa, chỉ hiện điểm.</li>
+      <li>Không tải lại trang khi đang làm bài.</li>
+    </ul>
+  </section>
+
+  <div id="exam" hidden>
+    <fieldset id="examFs" style="border:0;padding:0;margin:0;min-width:0">
+      <section class="card" id="partI"><h2>Phần I. Trắc nghiệm (câu 1–12): chọn A, B hoặc C</h2><div id="listI"></div></section>
+      <section class="card" id="partII"><h2>Phần II. Điền từ (câu 13–20): chọn chữ cái trong khung từ</h2>
+        <div class="bank" id="bank"></div>
+        <div id="listII"></div>
+      </section>
+    </fieldset>
+    <div class="actions"><button id="btnSubmit" type="button">Nộp bài</button></div>
+    <div id="msgSubmit" class="msg"></div>
+  </div>
+
+  <section class="card result" id="done" hidden>
+    <h2>Đã nộp bài</h2>
+    <div>Điểm của bạn</div>
+    <div class="big" id="score"></div>
+    <div id="doneName"></div>
+    <p>Bài làm đã được khóa. Chúc bạn học tốt!</p>
+  </section>
+</main>
+
+<footer>Liên hệ Zalo: <a href="https://zalo.me/0914490382" target="_blank" rel="noopener">0914490382</a></footer>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var state = { token:null, deadline:0, timer:null, qs:[], total:20, bai:'Bài 2-3', started:false, submitting:false, finished:false, info:null };
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function han(s){ return esc(s).replace(/[\u3000-\u303f\u4e00-\u9fff\uff00-\uffef]+/g, '<span class="han">$&</span>'); }
+  function show(el, type, text){ el.className = 'msg show ' + type; el.textContent = text; }
+  function hide(el){ el.className = 'msg'; el.textContent = ''; }
+  function norm(s){ return String(s||'').replace(/\s+/g,' ').trim().toLowerCase(); }
+  function fmtScore(x){ return String(x).replace('.', ','); }
+  function lockKey(code, name, cls){ return 'ktv23|' + norm(code) + '|' + norm(name) + '|' + norm(cls); }
+  function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+  function lsSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+
+  function configured(){ return typeof SCRIPT_URL === 'string' && /^https?:\/\//i.test(SCRIPT_URL.trim()); }
+
+  function post(payload){
+    var ctl = ('AbortController' in window) ? new AbortController() : null;
+    var t = ctl ? setTimeout(function(){ ctl.abort(); }, 30000) : null;
+    return fetch(SCRIPT_URL.trim(), { method:'POST', body: JSON.stringify(payload), redirect:'follow', signal: ctl ? ctl.signal : undefined })
+      .then(function(r){ return r.text(); })
+      .then(function(txt){ if(t) clearTimeout(t); try { return JSON.parse(txt); } catch(e){ throw new Error('Máy chủ trả về dữ liệu không hợp lệ. Kiểm tra lại URL Web App và quyền truy cập (Anyone).'); } })
+      .catch(function(err){ if(t) clearTimeout(t); throw err; });
+  }
+
+  /* ---------- Bắt đầu ---------- */
+  $('btnStart').addEventListener('click', function(){
+    var hoTen = $('hoTen').value.trim(), lop = $('lop').value.trim(), ma = $('maPhong').value.trim();
+    hide($('msgStart'));
+    if(!hoTen || !lop){ show($('msgStart'),'err','Vui lòng nhập Họ và tên và Lớp.'); return; }
+    if(!configured()){
+      show($('msgStart'),'warn','Trang chưa được kết nối máy chủ (chưa dán SCRIPT_URL ở dòng 5 của file HTML). Bài chưa bị khóa. Vui lòng báo giáo viên.');
+      return;
+    }
+    if(!ma){ show($('msgStart'),'err','Vui lòng nhập mã phòng thi.'); return; }
+    if(lsGet(lockKey(ma, hoTen, lop))){
+      show($('msgStart'),'err','Bạn đã nộp bài với mã phòng này rồi nên bài đã bị khóa.'); return;
+    }
+    var btn = $('btnStart'); btn.disabled = true; btn.textContent = 'Đang kiểm tra…';
+    post({ action:'start', hoTen:hoTen, lop:lop, maPhong:ma }).then(function(res){
+      if(!res || !res.ok){
+        show($('msgStart'),'err', (res && res.msg) || 'Không vào được phòng thi.');
+        btn.disabled = false; btn.textContent = 'Bắt đầu làm bài'; return;
+      }
+      state.token = res.token; state.qs = res.cauHoi || []; state.total = state.qs.length;
+      state.info = { hoTen:hoTen, lop:lop, ma:ma };
+      ['hoTen','lop','maPhong'].forEach(function(id){ $(id).readOnly = true; });
+      $('info').hidden = true;
+      buildExam(res);
+      $('exam').hidden = false; $('bar').hidden = false;
+      state.started = true;
+      state.deadline = Date.now() + res.thoiGian*1000;
+      tick(); state.timer = setInterval(tick, 250);
+      window.scrollTo(0,0);
+    }).catch(function(err){
+      show($('msgStart'),'err','Không kết nối được máy chủ: ' + (err && err.name==='AbortError' ? 'quá thời gian chờ.' : (err.message||err)) + ' Hãy thử lại.');
+      btn.disabled = false; btn.textContent = 'Bắt đầu làm bài';
+    });
+  });
+
+  /* ---------- Dựng đề ---------- */
+  function buildExam(res){
+    var listI = $('listI'), listII = $('listII'), bank = $('bank');
+    listI.innerHTML = ''; listII.innerHTML = ''; bank.innerHTML = '';
+    var letters = (res.nganTu || []).map(function(b){ return b.k; });
+    (res.nganTu || []).forEach(function(b){
+      bank.insertAdjacentHTML('beforeend','<span class="chip"><b>'+esc(b.k)+'.</b> '+han(b.t)+'</span>');
+    });
+    state.qs.forEach(function(q){
+      var div = document.createElement('div');
+      if(q.loai === 'mc'){
+        div.className = 'q';
+        var h = '<div class="stem"><span class="n">'+q.id+'</span><div>'+han(q.hoi)+'</div></div>';
+        ['A','B','C'].forEach(function(k){
+          if(q.chon[k] === undefined) return;
+          h += '<label class="opt"><input type="radio" name="q'+q.id+'" value="'+k+'"><span class="box"><span class="lt">'+k+'</span><span>'+han(q.chon[k])+'</span></span></label>';
+        });
+        div.innerHTML = h; listI.appendChild(div);
+      } else {
+        div.className = 'q fill';
+        var parts = String(q.hoi).split('[[_]]');
+        var sel = '<select name="q'+q.id+'" aria-label="Câu '+q.id+'"><option value="">--</option>';
+        letters.forEach(function(k){ sel += '<option value="'+esc(k)+'">'+esc(k)+'</option>'; });
+        sel += '</select>';
+        div.innerHTML = '<div class="stem"><span class="n">'+q.id+'</span><div class="sent">'+han(parts[0])+sel+han(parts[1]||'')+'</div></div>'
+          + (q.dich ? '<div class="vi">'+esc(q.dich)+'</div>' : '');
+        listII.appendChild(div);
+      }
+    });
+    $('exam').addEventListener('change', updateProg);
+    updateProg();
+  }
+
+  function collect(){
+    var ans = {}, done = 0;
+    state.qs.forEach(function(q){
+      var v = '';
+      if(q.loai === 'mc'){
+        var c = document.querySelector('input[name="q'+q.id+'"]:checked'); v = c ? c.value : '';
+      } else {
+        var s = document.querySelector('select[name="q'+q.id+'"]'); v = s ? s.value : '';
+      }
+      ans[q.id] = v; if(v) done++;
+    });
+    return { ans:ans, done:done };
+  }
+  function updateProg(){ $('prog').textContent = collect().done + '/' + state.total; }
+
+  /* ---------- Đồng hồ ---------- */
+  function tick(){
+    var left = Math.max(0, Math.ceil((state.deadline - Date.now())/1000));
+    var m = Math.floor(left/60), s = left%60;
+    var el = $('timer'); el.textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+    el.className = left <= 60 ? 'low' : '';
+    if(left <= 0 && !state.submitting && !state.finished){ submit(true); }
+  }
+
+  /* ---------- Nộp bài ---------- */
+  $('btnSubmit').addEventListener('click', function(){
+    if(state.pendingAns){ resend(); } else { submit(false); }
+  });
+  window.addEventListener('beforeunload', function(e){
+    if(state.started && !state.finished){ e.preventDefault(); e.returnValue = ''; return ''; }
+  });
+
+  function submit(auto){
+    if(state.submitting || state.finished || !state.started) return;
+    var c = collect();
+    if(!auto){
+      var left = state.total - c.done;
+      if(left > 0 && !confirm('Bạn còn ' + left + ' câu chưa làm. Vẫn nộp bài?')) return;
+      if(left === 0 && !confirm('Nộp bài ngay bây giờ? Sau khi nộp sẽ không sửa được.')) return;
+    }
+    state.submitting = true;
+    clearInterval(state.timer);
+    $('examFs').disabled = true;
+    var btn = $('btnSubmit'); btn.disabled = true; btn.textContent = 'Đang nộp bài…';
+    show($('msgSubmit'),'info', auto ? 'Đã hết giờ, đang tự động nộp bài…' : 'Đang gửi bài, vui lòng chờ…');
+    send(c.ans);
+  }
+
+  function send(ans){
+    post({ action:'submit', token:state.token, hoTen:state.info.hoTen, lop:state.info.lop, maPhong:state.info.ma, traLoi:ans })
+    .then(function(res){
+      if(res && res.ok){ finish(res); return; }
+      fail((res && res.msg) || 'Máy chủ từ chối nhận bài.', ans);
+    })
+    .catch(function(err){
+      fail('Chưa gửi được bài (' + (err && err.name==='AbortError' ? 'quá thời gian chờ' : (err.message||err)) + '). Bài làm của bạn vẫn còn trên màn hình, bấm “Gửi lại” khi có mạng.', ans);
+    });
+  }
+
+  function fail(text, ans){
+    var btn = $('btnSubmit');
+    state.submitting = false;
+    state.pendingAns = ans;
+    btn.disabled = false; btn.textContent = 'Gửi lại';
+    show($('msgSubmit'),'err', text);
+  }
+
+  function resend(){
+    var btn = $('btnSubmit');
+    if(state.submitting || state.finished) return;
+    state.submitting = true; btn.disabled = true; btn.textContent = 'Đang nộp bài…';
+    show($('msgSubmit'),'info','Đang gửi lại…');
+    send(state.pendingAns);
+  }
+
+  function finish(res){
+    state.finished = true; state.submitting = false;
+    lsSet(lockKey(state.info.ma, state.info.hoTen, state.info.lop), String(Date.now()));
+    $('exam').hidden = true; $('bar').hidden = true;
+    $('score').textContent = fmtScore(res.diem) + ' / ' + fmtScore(res.tong);
+    $('doneName').textContent = state.info.hoTen + ' – ' + state.info.lop;
+    $('done').hidden = false;
+    window.scrollTo(0,0);
+  }
+})();
+</script>
+</body>
+</html>
